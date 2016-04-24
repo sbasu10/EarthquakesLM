@@ -15,13 +15,24 @@ shinyUI(pageWithSidebar(
                        label = h3("Select one or more columns as the terms for linear predictor"), 
                        choices = c(dfnames),
                        selected = c('Depth', 'NST'))
-    ),
-    mainPanel(
-      verbatimTextOutput("header"),
-      plotOutput("multiPlots"),
-      verbatimTextOutput("regTab"),
-      verbatimTextOutput("anovaTab"),
-      dataTableOutput('RawData')
+  ),
+  
+  mainPanel(
+    tabsetPanel(
+      tabPanel("Linear Model",
+               verbatimTextOutput("header"),
+               plotOutput("multiPlots"),
+               verbatimTextOutput("regTab"),
+               verbatimTextOutput("anovaTab")
+      ),
+      tabPanel("Dataset",
+               dataTableOutput('RawData')
+      ),
+      tabPanel("Help",
+               includeHTML("learnMore.html")
+      )
     )
+  )
+  
 ))
 
