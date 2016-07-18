@@ -12,14 +12,14 @@ shinyUI(pageWithSidebar(
     hr(),
     
     checkboxGroupInput("predictorTerms", 
-                       label = h3("Select one or more columns as the terms for linear predictor"), 
+                       label = h3("Select one or more columns as the features for linear regression model"), 
                        choices = c(dfnames),
                        selected = c('Depth', 'NST'))
   ),
   
   mainPanel(
     tabsetPanel(
-      tabPanel("Linear Model",
+      tabPanel("Linear Regression Model",
                verbatimTextOutput("header"),
                plotOutput("multiPlots"),
                verbatimTextOutput("regTab"),
@@ -28,7 +28,7 @@ shinyUI(pageWithSidebar(
       tabPanel("Dataset",
                dataTableOutput('RawData')
       ),
-      tabPanel("Help",
+      tabPanel("Documentation",
                includeHTML("learnMore.html")
       )
     )

@@ -20,7 +20,7 @@ shinyServer(function(input, output) {
       frmlObj <- as.formula(paste(input$selectedResponse," ~ ",paste(input$predictorTerms,collapse="+")))
       print(frmlObj, showEnv=FALSE)
     } else {
-      print(data.frame(Warning="Please select Model Parameters."))
+      print(data.frame(Warning="Please select columns that can be used as features in the linear regression model"))
     }
   })
   
@@ -29,7 +29,7 @@ shinyServer(function(input, output) {
       lmObject <- runRegression()
       summary.lm(lmObject, correlation=TRUE, digits=5, signif.stars=TRUE)
     } else {
-      print(data.frame(Warning="Please select Model Parameters."))
+      print(data.frame(Warning="Please select columns that can be used as features in the linear regression model"))
     }
   })
 
@@ -38,7 +38,7 @@ shinyServer(function(input, output) {
       anovaObject <- anova(runRegression())
       print(anovaObject)
     } else {
-      print(data.frame(Warning="Please select Model Parameters."))
+      print(data.frame(Warning="Please select columns that can be used as features in the linear regression model"))
     }
   })
   

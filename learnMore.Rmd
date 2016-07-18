@@ -1,19 +1,19 @@
 ---
 title: "Learn more about EARTHQUAKES LM"
 author: "Sujoy Basu"
-date: "April 24, 2016"
+date: "July 17, 2016"
 output: html_document
 ---
 
-This application makes it easy to take a dataset in CSV format and build a linear model using the lm command in R. The data scientist can view relevant analysis of the data on the single page of the application, and also search through the dataset . The current version of this application uses the earthquakes dataset installed with the application. Future versions will allow the dataset to be uploadeed. 
+This application makes it easy to take a dataset in CSV format and build a linear regression model using the lm command in R. The data scientist can view relevant analysis of the data on the single page of the application, and also search through the dataset . The current version of this application uses the earthquakes dataset installed with the application. Future versions will allow the dataset to be uploadeed. 
 
 To use this application, you have to make selections in the left panel:
 
-1. Select the column that will be the response column from the dropdown menu. The default is magnitude from the earthquakes dataset. This column will be expressed as a linear function of the variables selected in the next step. 
+1. Select the column that will be the response column from the dropdown menu. The default is magnitude from the earthquakes dataset. This column will be expressed as a linear function of the features, also known as variables or terms, selected in the next step. 
 
-2. Select the variables, that are also referred to as the terms for the linear predictor. Multiple checkboxes can be selected. The defaults are depth and NST columns of the earthquakes dataset.
+2. Select the features for the linear regression based predictor. Multiple checkboxes can be selected. The defaults are depth and NST columns of the earthquakes dataset. You may like to add the latitude feature to this default set, and observe how the R-squared metric increases. This implies that magnitude of the earthquake in this dataset is better predicted by the linear regression model when latitude is used in addition to depth and NST.
 
-The output of this application is reactive. As a result of calculations done by the shiny server, the display is updated. For the default selections, add longitude ('lon') to the terms of the linear predictor, and observe how the top four sections of the output are updated. 
+The output of this application is reactive. As a result of calculations done by the shiny server, the display is updated. Each time you add or remove features to be used as predictors, observe how the top four sections of the output are updated. 
 
 The output is divided into the following five sections:
 
@@ -35,7 +35,7 @@ par(mfrow = c(2, 2), oma = c(0, 0, 2, 0))
 plot(lmObject, id.n = 5, labels.id = NULL) 
 ```
 
-C. The next section summarizes the linear model by invoking the summary method of the lm class. Whether the first metric you look at to evaluate the model is the Adjusted R-squared metric, or the distribution of the residuals, or something else, you are likely to find it in this section:
+C. The next section summarizes the linear model by invoking the summary method of the lm class. If you are interested in the residual standard error, adjusted R-squared metric, or the F-statistic, you are likely to find it in this section:
 
 ```{r, echo=FALSE}
 summary.lm(lmObject, correlation=TRUE, digits=5, signif.stars=TRUE)
@@ -47,5 +47,5 @@ D. The following section summarizes the ANOVA analysis:
 anova(lmObject)
 ```
 
-E. The fifth section, which is in a separate tab, displays the content of the CSV file, and allows data points to be searched.
+E. The fifth section, which is in a separate tab called 'Dataset', displays the content of the CSV file, and allows data points to be searched.
 
